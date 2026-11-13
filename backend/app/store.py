@@ -4,9 +4,13 @@
 """
 from __future__ import annotations
 
+import threading
 from typing import Any
 
 from app.seed import SEED_ROWS
+
+# 内部表：重算批次与审计流水，不属于概览里对外的业务模块。
+INTERNAL_MODULES = {"segment_batch", "tag_audit"}
 
 
 class Store:
@@ -14,9 +18,12 @@ class Store:
         self._tables: dict[str, list[dict[str, Any]]] = {
             name: [dict(row) for row in rows] for name, rows in SEED_ROWS.items()
         }
+        # 内存仓库的写操作（批次、进度、结果）在同一进程内串行化；
+        # 单个 SQLite/数据库实现里这里换成事务或行锁。
+        self.lock = threading.RLock()
 
     def module_names(self) -> list[str]:
-        return sorted(self._tables)
+        return sorted(name for name in self._tables if name not in INTERNAL_MODULES)
 
     def rows(self, module: str) -> list[dict[str, Any]]:
         return self._tables.setdefault(module, [])

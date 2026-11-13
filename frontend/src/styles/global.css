@@ -33,3 +33,17 @@ body { margin: 0; background: #f6f8fb; color: #1f2937; }
 .link { border: none; background: none; color: var(--brand); cursor: pointer; padding: 0; }
 .page-foot { display: flex; justify-content: space-between; margin-top: 8px; font-size: 12px; color: var(--muted); }
 .error-text { color: #b42318; }
+.locate-bar { align-items: center; }
+.locate-hint { font-size: 12px; color: var(--brand); }
+.row-highlight td { background: #eef4ff; }
+.message-text { color: #067647; font-size: 12px; }
+.detail-panel { margin-top: 16px; background: #fff; border: 1px solid var(--border); border-radius: 8px; padding: 12px; }
+.detail-head { display: flex; justify-content: space-between; align-items: center; }
+.detail-head h3 { margin: 0 0 8px; font-size: 14px; }
+.detail-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px 16px; margin: 0 0 12px; }
+.detail-grid dt { color: var(--muted); font-size: 12px; }
+.detail-grid dd { margin: 2px 0 0; font-size: 13px; }
+.pager { display: flex; gap: 8px; }
+.btn:disabled { opacity: .5; cursor: not-allowed; }
+.filter-item select { padding: 4px 6px; border: 1px solid var(--border); border-radius: 6px; }
+.detail-sub { color: var(--muted); font-size: 12px; }
